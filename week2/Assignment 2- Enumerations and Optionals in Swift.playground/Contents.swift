@@ -48,7 +48,10 @@ print(associateValue)
 
 //2-1
 class Pet {
-    var name: String = "cat"
+    var name: String
+    init(name: String) {
+    self.name = name
+    }
 }
 
 class People {
@@ -57,25 +60,31 @@ class People {
 
 //2-2
 let person1 = People()
-let personPet1 = Pet()
 
-func foundNilPet(pet: Pet?) {
-    guard let _pet = pet else {
+func findNilCat(whosPet: Pet?) {
+    guard let pet = whosPet else {
+        print("no pet here")
         return
     }
-    print(_pet)
+    print("here is the \(pet.name)")
 }
 
-foundNilPet(pet: person1.pet)
-
+person1.pet = Pet(name: "cat") //sign "cat" to person1
+findNilCat(whosPet: person1.pet) //unwrap
 
 
 //2-3
 let person2 = People()
 
-if let petNil = person2.pet {
-    print("\(petNil.name)")
+func findNilDog(whosPet: Pet?) {
+    if let pet = whosPet {
+        print("pets \(pet.name)")
+    } else {
+        print("no pet here")
+    }
 }
 
+person2.pet = Pet(name: "dog") //sign "dog" to person2
+findNilDog(whosPet: person2.pet) //unwrap
 
 
